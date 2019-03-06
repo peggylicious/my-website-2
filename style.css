@@ -159,7 +159,8 @@ header{
     background: linear-gradient(to right, black 40% , #fff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: 'Pacifico', cursive;
+    /* font-family: 'Pacifico', cursive; */
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .overlay{
     width: 100%;
