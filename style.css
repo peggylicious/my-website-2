@@ -3,22 +3,84 @@
     margin: 0;
     box-sizing: border-box;
 }
-input[type="checkbox"]{
-    position: absolute;
-    z-index: -20;
+body{
+    overflow-x: hidden;
 }
+
+/* General Styles */
+header{
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(19, 28, 45, 0.98);
+    color: white;
+}
+
+
+/* Offcanvas */
 .offcanvas{
-    height: 100vh;
+    height: 100%;
     background-color: rgba(19, 28, 45, 0.98);
     width: 320px;
     position: absolute;
     top: 0;
     left: 0;
     transform: translate3d(-320px, 0, 0);
+    transition: transform .3s;
 }
+.offcanvas header{
+    /* background-color: #0a065d; */
+    overflow: hidden;
+}
+.offcanvas header .ham{
+    float: right;
+    height: inherit;
+    width: 50px;
+    /* background-color: red; */
+}
+.offcanvas header label{
+    display: block;
+    height: inherit;
+    font-size: 0;
+    /* background-color: green; */
+}
+.offcanvas header .ham span{
+    display: inline-block;
+    position: relative;
+    height: 2px;
+    width: 18px;
+    margin-top: -1px;
+    margin-left: -9px;
+    background-color: transparent;
+    top: 50%;
+    left: 50%;
+}
+.offcanvas header .ham span:before,
+.offcanvas header .ham span:after{
+    content: "";
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-color: #f04;;
+}
+.offcanvas header .ham span:before{
+    /* top: -4px; */
+    transform: rotate(45deg);
+}
+.offcanvas header .ham span:after{
+    /* top: 4px; */
+    transform: rotate(-45deg);
+}
+input#left-canvas{
+    position: absolute;
+    z-index: -20;
+}
+
 .offcanvas ul{
     list-style-type: none;
     width: 100%;
+    /* transform: translate3d(0, 50vh, 0); */
+    transition: transform 1s;
 }
 .offcanvas ul li{
     text-decoration: none;
@@ -27,73 +89,102 @@ input[type="checkbox"]{
     display: inline-block;
     width: 100%;
     margin-bottom: 4px;
-    color: #f04;
+    color: #e6b2c6;
     font-size: 1.15em;
     text-decoration: navajowhite;
-    border-top: 3px solid #fff;
     padding: 8px 12px;
-    /* border-bottom: 3px solid #fff; */
+}
 
+/* Defines movement of individual list item in canvas */
+.one, .two, .three, .four, .five, .six{
+    transform: translate(0, 50vh);
+    opacity: 0;
 }
-header{
-    position: absolute;
+input#left-canvas:checked ~ .offcanvas > ul .one{
+    transform: translate(0, 0);
+    transition: transform .6s;
+    opacity: 1;
+}
+input#left-canvas:checked ~ .offcanvas > ul .two{
+    transform: translate(0, 0);
+    transition: transform .6s .2s, opacity .3s .2s;
+    opacity: 1;
+}
+input#left-canvas:checked ~ .offcanvas > ul .three{
+    transform: translate(0, 0);
+    transition: transform .6s .4s, opacity .3s .4s;
+    opacity: 1;
+}
+input#left-canvas:checked ~ .offcanvas > ul .four{
+    transform: translate(0, 0);
+    transition: transform .6s .6s, opacity .3s .6s;
+    opacity: 1;
+}
+input#left-canvas:checked ~ .offcanvas > ul .five{
+    transform: translate(0, 0);
+    transition: transform .6s .8s, opacity .3s .8s;
+    opacity: 1;
+}
+input#left-canvas:checked ~ .offcanvas > ul .six{
+    transform: translate(0, 0);
+    transition: transform .6s .9s, opacity .3s .9s;
+    opacity: 1;
+}
+
+/* Offcanvas slide-in & out*/
+
+input#left-canvas:checked ~ .offcanvas{
+    z-index: 50;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Container */
+
+.container{
+    transition: transform .3s;
+    position: relative;
+}
+.container header{
     z-index: 10;
-    top: 0;
-    width: 100%;
-    height: 50px;
-    background-color: rgba(19, 28, 45, 0.98);
-    /* background-color: #0a065d; */
-    color: white;
-    /* border-bottom: 3px solid #d2c8c8; */
+    position: absolute;
 }
-.ham{
+.container .ham{
     float: left;
     width: 50px;
     height: inherit;
-    /* background-color: red; */
 }
-.ham label{
+.container .ham label{
     display: block;
-    /* background-color: green; */
     height: 50px;
     font-size: 0;
 }
-.ham label span{
+.container .ham label span{
     display: inline-block;
     height: 2px;
     width: 22px;
     background-color: #f04;
-    /* background-color: #0a065d; */
-    /* background-color: #2ED99E; */
-    /* #2ED99E */
     position: relative;
     top: 50%;
     left: 50%;
     margin-top: -1px;
     margin-left: -12px;
 }
-.ham label span:before,
-.ham label span:after{
+.container .ham label span:before,
+.container .ham label span:after{
     content: "";
     height: 2px;
     position: absolute;
-    /* width: 26px; */
-    /* background-color: #2ED99E; */
     background-color: #f04;
-    /* background-color: #0a065d; */
 }
-.ham label span:before{
+.container .ham label span:before{
     top: -6px;
     width: 26px;
 }
-.ham label span:after{
+.container .ham label span:after{
     top: 6px;
     width: 18px;
-    /* background-color: blue; */
 }
-.container{
-    position: relative;
-}
+
 .meet-me{
     height: 100vh;
     width: 100%;
@@ -109,23 +200,16 @@ header{
     background-repeat: no-repeat;
     background-position: 50% 10%;
     background-size: cover;
-    /* top: 0;
-    left: 0%; */
 }
 .photo-box{
     height: 20vh;
     width: 100%;
-    /* background-color: red; */
-    /* background-color: rgba(19, 28, 45, 0.98); */
     position: absolute;
-    /* top: 70%; */
     bottom: 0;
     left: 0%;
 }
 
 .name{
-    /* top: 120px; */
-    /* background-color: pink; */
     text-align: center;
     position: relative;
     color: #0a065d;
@@ -147,11 +231,7 @@ header{
     text-transform: uppercase;
     font-size: 1.4em;
     letter-spacing: 1px;
-    /* color: white; */
     text-align: left;
-    /* background: linear-gradient(to right, #f04 10% , #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
 }
 .name p{
     padding: 5px 0 5px 0;
@@ -162,7 +242,7 @@ header{
     /* font-family: 'Pacifico', cursive; */
     font-family: 'Source Sans Pro', sans-serif;
 }
-.overlay{
+.meet-me .overlay{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -171,14 +251,28 @@ header{
     background-color: rgba(19, 28, 45, 0.85);
 }
 
-.overlay .name{
-    /* top: 80%; */
+.meet-me .overlay .name{
     bottom: 20px;
     position: absolute;
     right: 0;
     height: 100px;
     width: 100%;
-    /* background-color: pink; */
     text-align: right;
     color: #f8f1f1;
+}
+
+input#left-canvas:checked ~ .container{
+    height: 100vh;
+    overflow: hidden;
+    /* z-index: 50; */
+    transform: translate3d(320px, 0, 0);
+}
+
+input#left-canvas:checked ~ .container .overlay-1{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .5);
+    z-index: 50;
+    top: 0;
 }
